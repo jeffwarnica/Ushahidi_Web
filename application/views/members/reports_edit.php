@@ -67,7 +67,7 @@
 							// Action::report_pre_form_admin - Runs right before report form is rendered
 							Event::run('ushahidi_action.report_pre_form_messages', $id);
 							?>
-							<div class="row">
+							<div class="row" style="display: none;">
 								<h4><?php echo Kohana::lang('ui_main.form');?> <span>(<?php echo Kohana::lang('ui_main.select_form_type');?>)</span></h4>
 								<span class="sel-holder">
 									<?php print form::dropdown('form_id', $forms, $form['form_id'],
@@ -75,6 +75,7 @@
 								</span>
 								<div id="form_loader" style="float:left;"></div>
 							</div>
+							
 							<div class="row">
 								<h4><?php echo Kohana::lang('ui_main.title');?></h4>
 								<?php print form::input('incident_title', $form['incident_title'], ' class="text title"'); ?>

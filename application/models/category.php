@@ -20,6 +20,8 @@ class Category_Model extends ORM_Tree {
 	 */
 	protected $has_many = array('incident' => 'incident_category', 'category_lang');
 	
+	protected $has_one = array("form_id");
+	
 	/**
 	 * Database table name
 	 * @var string
@@ -55,7 +57,8 @@ class Category_Model extends ORM_Tree {
 					->add_rules('parent_id','required', 'numeric')
 					->add_rules('category_title','required', 'length[3,80]')
 					->add_rules('category_description','required')
-					->add_rules('category_color','required', 'length[6,6]');
+					->add_rules('category_color','required', 'length[6,6]')
+					->add_rules('form_id', 'required', 'numeric');
 		
 		
 		// When creating a new category
@@ -119,6 +122,8 @@ class Category_Model extends ORM_Tree {
 			}
 		}
 		
+// 		$array->add_callbacks('form_id', 'Form_Model::is_valid_form');
+		
 		// Pass on validation to parent and return
 		return parent::validate($array, $save);
 	}
@@ -145,6 +150,7 @@ class Category_Model extends ORM_Tree {
 				self::$categories[$category->id]['category_color'] = $category->category_color;
 				self::$categories[$category->id]['category_image'] = $category->category_image;
 				self::$categories[$category->id]['category_image_thumb'] = $category->category_image_thumb;
+				self::$categories[$category->id]['form_id'] = $category->form_id;
 			}
 		}
 		
@@ -169,6 +175,7 @@ class Category_Model extends ORM_Tree {
 				? self::factory('category', intval($category_id))->loaded
 				: FALSE;
 	}
+	
 	
 	/**
 	 * Given a parent id, gets the immediate children for the category, else gets the list

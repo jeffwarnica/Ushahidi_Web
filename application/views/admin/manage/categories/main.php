@@ -95,6 +95,17 @@
 							<strong><?php echo Kohana::lang('ui_main.parent_category');?>:</strong><br />
 							<?php print form::dropdown('parent_id', $parents_array, '0'); ?>
 						</div>
+						
+						<div class="tab_form_item">
+							<h4><span><?php echo Kohana::lang('ui_main.select_form_type');?></span>
+							<span class="sel-holder">
+								<?php print form::dropdown('form_id', $forms_array, $form['form_id']) ?>
+							</span>
+							<div id="form_loader" style="float:left;"></div>
+							</h4>
+						</div>
+						
+						
 						<div class="tab_form_item">
 							<strong><?php echo Kohana::lang('ui_main.image_icon');?>:</strong><br />
 							<?php

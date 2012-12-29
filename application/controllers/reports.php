@@ -1008,6 +1008,7 @@ class Reports_Controller extends Main_Controller {
 @var Category_Model
  */
 		$category = Category_Model::categories($category_id);
+		var_dump($category);
 		$form_id = $category->form_id;;
 		
 		$form_fields = customforms::switcheroo($incident_id,$form_id);

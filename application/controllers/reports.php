@@ -1000,7 +1000,7 @@ class Reports_Controller extends Main_Controller {
 	
 		error_log(__FILE__ . "#switch_category()");
 		
-		isset($_POST['category_id']) ? $form_id = $_POST['category_id'] : $category_id = "1";
+		isset($_POST['category_id']) ? $category_id = $_POST['category_id'] : $category_id = "1";
 		isset($_POST['incident_id']) ? $incident_id = $_POST['incident_id'] : $incident_id = "";
 	
 		error_log(__FILE__ . "#switch_category() \$category_id: $category_id, \$incident_id: $incident_id");

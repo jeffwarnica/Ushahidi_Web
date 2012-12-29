@@ -1004,7 +1004,14 @@ class Reports_Controller extends Main_Controller {
 		isset($_POST['incident_id']) ? $incident_id = $_POST['incident_id'] : $incident_id = "";
 	
 		error_log(__FILE__ . "#switch_category() \$category_id: $category_id, \$incident_id: $incident_id");
-	
+/**
+@var Category_Model
+ */
+		$category = Category_Model::categories($category_id);
+		$form_id = $category->form_id;;
+		
+		$form_fields = customforms::switcheroo($incident_id,$form_id);
+		echo json_encode(array("status"=>"success", "response"=>$form_fields));
 	}
 
 	/**

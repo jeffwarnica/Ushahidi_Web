@@ -256,6 +256,7 @@
 											$fillFields['category_description'] = $child->category_description;
 											$fillFields['category_color'] = $child->category_color;
 											$fillFields['category_image'] = $child->category_image;
+											$fillFields['form_id'] = $child->form_id;
 											$fillFields['locale'] = $category->locale;
 											$fillFields['category_langs'] = array();
 											foreach($child->category_lang as $category_lang) {

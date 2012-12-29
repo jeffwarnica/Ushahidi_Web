@@ -995,22 +995,20 @@ class Reports_Controller extends Main_Controller {
 	
 	public function switch_category()
 	{
+		if (!Kohana::config('settings.single_category_and_form')) {
+			return;
+		}
+		
 		$this->template = "";
 		$this->auto_render = FALSE;
 	
-		error_log(__FILE__ . "#switch_category()");
-		
 		isset($_POST['category_id']) ? $category_id = $_POST['category_id'] : $category_id = "1";
 		isset($_POST['incident_id']) ? $incident_id = $_POST['incident_id'] : $incident_id = "";
 	
-		error_log(__FILE__ . "#switch_category() \$category_id: $category_id, \$incident_id: $incident_id");
-
 		$categories = Category_Model::categories($category_id);
 		$category = $categories[$category_id];
 			
 		$form_id = $category['form_id'];
-		
-		error_log(__FILE__ . "#switch_category() \$category_id: $category_id, \$incident_id: $incident_id.\t\t Default \$form_id: $form_id");
 		
 		$form_fields = customforms::switcheroo($incident_id,$form_id);
 		echo json_encode(array("status"=>"success", "response"=>$form_fields));

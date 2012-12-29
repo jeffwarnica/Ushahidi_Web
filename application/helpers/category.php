@@ -28,7 +28,7 @@ class category_Core {
 		}
 
 		$html .= "<label>";
-		$onchange = " onchange=\"categorySwitch(" . $cid . ")\"";
+		$onchange = Kohana::config('settings.single_category_and_form') ? " onchange=\"categorySwitch(" . $cid . ")\"" : "";
 		$html .= form::checkbox($form_field.'[]', $cid, $category_checked, ' class="check-box"'.$disabled . $onchange);
 		$html .= $category['category_title'];
 		$html .= "</label>";

@@ -33,6 +33,9 @@
 				<input type="hidden" name="form_id" id="form_id" value="<?php echo $id?>">
 			</div>
 			<div class="report_left">
+<?php 
+if (!Kohana::config('settings.single_category_and_form')) {
+?>			
 				<div class="report_row">
 					<?php if(count($forms) > 1): ?>
 					<div class="row">
@@ -48,6 +51,9 @@
 					<h4><?php echo Kohana::lang('ui_main.reports_title'); ?> <span class="required">*</span> </h4>
 					<?php print form::input('incident_title', $form['incident_title'], ' class="text long"'); ?>
 				</div>
+<?php
+} 
+?>
 				<div class="report_row">
 					<h4><?php echo Kohana::lang('ui_main.reports_description'); ?> <span class="required">*</span> </h4>
 					<?php print form::textarea('incident_description', $form['incident_description'], ' rows="10" class="textarea long" ') ?>

@@ -998,6 +998,8 @@ class Reports_Controller extends Main_Controller {
 		$this->template = "";
 		$this->auto_render = FALSE;
 	
+		error_log(__FILE__ . "#switch_category()");
+		
 		isset($_POST['category_id']) ? $form_id = $_POST['category_id'] : $category_id = "1";
 		isset($_POST['incident_id']) ? $incident_id = $_POST['incident_id'] : $incident_id = "";
 	

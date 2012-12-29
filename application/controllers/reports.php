@@ -1005,7 +1005,8 @@ class Reports_Controller extends Main_Controller {
 	
 		error_log(__FILE__ . "#switch_category() \$category_id: $category_id, \$incident_id: $incident_id");
 
-		$category = Category_Model::categories($category_id);		
+		$category = Category_Model::categories($category_id);	
+		var_dump($category);	
 		$form_id = $category['form_id'];
 		
 		error_log(__FILE__ . "#switch_category() \$category_id: $category_id, \$incident_id: $incident_id.\t\t Default \$form_id: $form_id");

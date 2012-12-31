@@ -487,6 +487,9 @@ class Login_Controller extends Template_Controller {
 					if ($openid->validate())
 					{
 						// Does User Exist?
+						/**
+						 *	@var Openid_Model
+						 */
 						$openid_user = ORM::factory("openid")
 							->where("openid", $openid->identity)
 							->find();
@@ -500,7 +503,7 @@ class Login_Controller extends Template_Controller {
 							$auth->force_login($openid_user->user->username);
 
 							// Exists Redirect to Dashboard
-							url::redirect($user->dashboard());
+							url::redirect($openid_user->user->dashboard());
 						}
 						else
 						{

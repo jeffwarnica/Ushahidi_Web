@@ -458,23 +458,12 @@ class Reports_Controller extends Main_Controller {
 				'captcha' => ''
 			);
 
-var_dump(Kohana::config('settings.logged_in_no_captcha'));
-die;	
-
 			//Halifail: Skip captch for logged in users (if configured).
 			//			later processing sees $captcha as being null and deals with it.
-			if (!$this->user) {
-error_log("XX: No user");
+			$captcha = null;
+			if (!$this->user || (Kohana::config('config.logged_in_no_captcha') != TRUE)) {
 				$captcha = Captcha::factory();
-			} elseif ((Kohana::config('settings.logged_in_no_captcha') == TRUE)) {
-error_log("XX: User, l_i_n_c != TRUE");
-				$captcha = Captcha::factory();
-			} else {
-error_log("XX: else");
-				$captcha = null;
 			} 
-
-error_log("XXX: \$captcha is: ?? " . (is_null($captcha) ? "null" : get_class($captcha)));
 
 			$errors = $form;
 			$form_error = FALSE;

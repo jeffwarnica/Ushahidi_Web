@@ -436,6 +436,9 @@ class Reports_Controller extends Main_Controller {
 
 		if ($id > 0 AND Incident_Model::is_valid_incident($id,TRUE))
 		{
+			/**
+			  @var Incident_Model
+			 */
 			$incident = ORM::factory('incident')
 				->where('id',$id)
 				->where('incident_active',1)
@@ -631,6 +634,8 @@ class Reports_Controller extends Main_Controller {
 			$this->template->content->incident_date = date('M j Y', strtotime($incident->incident_date));
 			$this->template->content->incident_time = date('H:i', strtotime($incident->incident_date));
 			$this->template->content->incident_category = $incident->incident_category;
+
+			$this->template->content->incident_submitter = $incident->user->username;
 
 			// Incident rating
 			$rating = ORM::factory('rating')

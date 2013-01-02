@@ -458,7 +458,13 @@ class Reports_Controller extends Main_Controller {
 				'captcha' => ''
 			);
 
-			$captcha = Captcha::factory();
+			//Halifail: Skip captch for logged in users (if configured).
+			//			later processing sees $captcha as being null and deals with it.
+			$captcha = null;
+			
+			if ( !($this->user) || (Kohana::config('settings.logged_in_no_captcha') == FALSE)) {
+				$captcha = Captcha::factory();
+			} 
 			$errors = $form;
 			$form_error = FALSE;
 
@@ -479,7 +485,10 @@ class Reports_Controller extends Main_Controller {
 					$post->add_rules('comment_email', 'required','email', 'length[4,100]');
 				}
 				$post->add_rules('comment_description', 'required');
-				$post->add_rules('captcha', 'required', 'Captcha::valid');
+				
+				if (!is_null($captcha)) {
+					$post->add_rules('captcha', 'required', 'Captcha::valid');
+				}
 
 				// Test to see if things passed the rule checks
 				if ($post->validate())

@@ -462,7 +462,7 @@ class Reports_Controller extends Main_Controller {
 			//			later processing sees $captcha as being null and deals with it.
 			$captcha = null;
 			
-			if ( !($this->user) || (Kohana::config('settings.logged_in_no_captcha') == FALSE)) {
+			if ( !($this->user) || (Kohana::config('settings.logged_in_no_captcha') == FALSE)) {//XX
 				$captcha = Captcha::factory();
 			} 
 			$errors = $form;

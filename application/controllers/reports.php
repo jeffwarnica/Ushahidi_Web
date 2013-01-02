@@ -461,8 +461,7 @@ class Reports_Controller extends Main_Controller {
 			//Halifail: Skip captch for logged in users (if configured).
 			//			later processing sees $captcha as being null and deals with it.
 			$captcha = null;
-			
-			if ( !($this->user) || (Kohana::config('settings.logged_in_no_captcha') == FALSE)) {//XX
+			if (!$this->user || !(Kohana::config('settings.logged_in_no_captcha') == TRUE)) {
 				$captcha = Captcha::factory();
 			} 
 			$errors = $form;

@@ -178,3 +178,6 @@ $config['modules'] = array
 	// MODPATH.'archive',   // Archive utility
 	// MODPATH.'unit_test', // Unit testing
 );
+
+
+$config['logged_in_no_captcha'] = TRUE;

@@ -50,12 +50,16 @@
 		<strong><?php echo Kohana::lang('ui_main.comments'); ?>:</strong><br />
 		<?php print form::textarea('comment_description', $form['comment_description'], ' rows="4" cols="40" class="textarea long" ') ?>
 	</div>
-	<div class="report_row">
-		<strong><?php echo Kohana::lang('ui_main.security_code'); ?>:</strong><br />
-		<?php print $captcha->render(); ?><br />
-		<?php print form::input('captcha', $form['captcha'], ' class="text"'); ?>
-	</div>
+	<?php	
+		if ( $captcha instanceof Captcha) {
+	?>
+		<div class="report_row">
+			<strong><?php echo Kohana::lang('ui_main.security_code'); ?>:</strong><br />
+			<?php print $captcha->render(); ?><br />
+			<?php print form::input('captcha', $form['captcha'], ' class="text"'); ?>
+		</div>
 	<?php
+	}
 	// Action::comments_form - Runs right before the end of the comment submit form
 	Event::run('ushahidi_action.comment_form');
 	?>

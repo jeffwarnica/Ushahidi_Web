@@ -463,6 +463,9 @@ class Login_Controller extends Template_Controller {
 			// OpenID Post
 			try
 			{
+				/**
+				 * @var OpenID_Core
+				 */
 				$openid = new OpenID;
 
 				// Retrieve the Name (if available) and Email
@@ -487,6 +490,9 @@ class Login_Controller extends Template_Controller {
 					if ($openid->validate())
 					{
 						// Does User Exist?
+						/**
+						  @var Openid_Model
+						 */
 						$openid_user = ORM::factory("openid")
 							->where("openid", $openid->identity)
 							->find();
@@ -557,7 +563,7 @@ class Login_Controller extends Template_Controller {
 									$auth->login($username, $password, TRUE);
 
 									// Redirect to Dashboard
-									url::redirect($user->dashboard());
+									url::redirect($openid_user->user->dashboard());
 								}
 							}
 						}

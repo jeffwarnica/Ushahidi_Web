@@ -65,7 +65,6 @@ class Manage_Controller extends Admin_Controller
 			'category_color' => '',
 			'category_image' => '',
 			'category_image_thumb' => '',
-			'form_id'	=> '',
 			'form_auth_token' => ''
 		);
 
@@ -82,7 +81,6 @@ class Manage_Controller extends Admin_Controller
 		$form_saved = FALSE;
 		$form_action = "";
 		$parents_array = array();
-		$forms_array = array();
 
 		// Check, has the form been submitted, if so, setup validation
 		if ($_POST)
@@ -92,7 +90,7 @@ class Manage_Controller extends Admin_Controller
 			
 			// Extract category-specific  information
 			$category_data = arr::extract($post_data, 'parent_id',
-				'category_title', 'category_description', 'category_color', 'form_id');
+				'category_title', 'category_description', 'category_color');
 			
 			// Extract category image and category languages for independent validation
 			$secondary_data = arr::extract($post_data, 'category_image',
@@ -120,7 +118,7 @@ class Manage_Controller extends Admin_Controller
 				? new Category_Model($_POST['category_id'])
 				: new Category_Model();
 			
-					
+			
 			// Check the specified action
 			if ($post->action == 'a')
 			{
@@ -341,9 +339,6 @@ class Manage_Controller extends Admin_Controller
 		// Put "--- Top Level Category ---" at the top of the list
 		ksort($parents_array);
 
-		$forms_array = ORM::factory('form')->select_list('id', 'form_title');
-		
-		
 		$this->template->content->form = $form;
 		$this->template->content->errors = $errors;
 		$this->template->content->form_error = $form_error;
@@ -354,8 +349,6 @@ class Manage_Controller extends Admin_Controller
 		$this->template->content->categories = $categories;
 
 		$this->template->content->parents_array = $parents_array;
-		
-		$this->template->content->forms_array = $forms_array;
 
 		// Javascript Header
 		$this->template->colorpicker_enabled = TRUE;

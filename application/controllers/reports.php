@@ -436,9 +436,6 @@ class Reports_Controller extends Main_Controller {
 
 		if ($id > 0 AND Incident_Model::is_valid_incident($id,TRUE))
 		{
-			/**
-			  @var Incident_Model
-			 */
 			$incident = ORM::factory('incident')
 				->where('id',$id)
 				->where('incident_active',1)
@@ -634,7 +631,10 @@ class Reports_Controller extends Main_Controller {
 			$this->template->content->incident_date = date('M j Y', strtotime($incident->incident_date));
 			$this->template->content->incident_time = date('H:i', strtotime($incident->incident_date));
 			$this->template->content->incident_category = $incident->incident_category;
+error_log(var_export($incident->user, true));
+error_log("XX" . var_export($incident->user->username, true));
 
+			$this->template->content->incident_submitter = $incident->user->username;
 			// Incident rating
 			$rating = ORM::factory('rating')
 					->join('incident','incident.id','rating.incident_id','INNER')
@@ -1003,27 +1003,6 @@ class Reports_Controller extends Main_Controller {
 		}
 
 		return $stroke_width_array;
-	}
-	
-	public function switch_category()
-	{
-		if (!Kohana::config('settings.single_category_and_form')) {
-			return;
-		}
-		
-		$this->template = "";
-		$this->auto_render = FALSE;
-	
-		isset($_POST['category_id']) ? $category_id = $_POST['category_id'] : $category_id = "1";
-		isset($_POST['incident_id']) ? $incident_id = $_POST['incident_id'] : $incident_id = "";
-	
-		$categories = Category_Model::categories($category_id);
-		$category = $categories[$category_id];
-			
-		$form_id = $category['form_id'];
-		
-		$form_fields = customforms::switcheroo($incident_id,$form_id);
-		echo json_encode(array("status"=>"success", "response"=>$form_fields));
 	}
 
 	/**

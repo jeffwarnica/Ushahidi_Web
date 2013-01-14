@@ -735,23 +735,6 @@
 				}, "json");
 			return false;
 		}
-	<?php 
-	if (Kohana::config('settings.single_category_and_form')) {
-		
-	?>
-		function categorySwitch(category_id, incident_id) {
-			$.post("<?php echo url::site().'reports/switch_category'; ?>", { category_id: category_id, incident_id: incident_id },
-				function(data){
-							if (data.status == 'success'){
-								$('#custom_forms').html('');
-								$('#custom_forms').html(data.response);
-								$('#form_loader').html('');
-							}
-					  	}, "json");
-		}
-	<?php 
-	} //
-	?>
 		
 		function formSwitch(form_id, incident_id)
 		{

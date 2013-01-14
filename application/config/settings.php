@@ -26,6 +26,5 @@ $config = array
 	'api_url' => '',
 	'api_url_all' => '',
 	'subdomain' => $subdomain,
-	'title_delimiter' => ' | ',
-	'single_category_and_form' => true,
+	'title_delimiter' => ' | '
 );

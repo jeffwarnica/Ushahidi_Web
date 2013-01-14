@@ -34,7 +34,7 @@
 			</div>
 			<div class="report_left">
 				<div class="report_row">
-					<?php if(!Kohana::config('settings.single_category_and_form') &&  count($forms) > 1): ?>
+					<?php if(count($forms) > 1): ?>
 					<div class="row">
 						<h4><span><?php echo Kohana::lang('ui_main.select_form_type');?></span>
 						<span class="sel-holder">

@@ -506,13 +506,12 @@ class Login_Controller extends Template_Controller {
 							$auth->force_login($openid_user->user->username);
 
 							// Exists Redirect to Dashboard
-							url::redirect($openid_user->user->dashboard());
+							url::redirect($user->dashboard());
 						}
 						else
 						{
 							// Does this openid have the required email??
 							$new_openid = $openid->getAttributes();
-error_log("OpenID attributes: " . var_export($new_openid));							
 							if ( ! isset($new_openid["contact/email"]) OR
 								empty($new_openid["contact/email"]))
 							{

@@ -716,7 +716,6 @@ class Reports_Controller extends Members_Controller {
 			</script>";
 	}
 
-
 	/**
 	 * Ajax call to update Incident Reporting Form
 	 */

@@ -179,5 +179,4 @@ $config['modules'] = array
 	// MODPATH.'unit_test', // Unit testing
 );
 
-
 $config['logged_in_no_captcha'] = TRUE;

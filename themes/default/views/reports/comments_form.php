@@ -50,8 +50,8 @@
 		<strong><?php echo Kohana::lang('ui_main.comments'); ?>:</strong><br />
 		<?php print form::textarea('comment_description', $form['comment_description'], ' rows="4" cols="40" class="textarea long" ') ?>
 	</div>
-	<?php 
-	if ( $captcha instanceof Captcha) {
+	<?php	
+		if ( $captcha instanceof Captcha) {
 	?>
 		<div class="report_row">
 			<strong><?php echo Kohana::lang('ui_main.security_code'); ?>:</strong><br />

@@ -25,7 +25,7 @@
 		?></h1>
 
 		<p class="report-when-where">
-			Submitted by: <?php $incident_submitter ?>
+			Submitted by: <?php echo $incident_submitter ?>
 		</p>
 		<p class="report-when-where">
 			<span class="r_date"><?php echo $incident_time.' '.$incident_date; ?> </span>

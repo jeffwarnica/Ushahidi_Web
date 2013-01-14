@@ -464,9 +464,9 @@ class Login_Controller extends Template_Controller {
 			try
 			{
 				/**
-			 	 * @var OpenID_Core
+				 * @var OpenID_Core
 				 */
-				$openid = new OpenID();
+				$openid = new OpenID;
 
 				// Retrieve the Name (if available) and Email
 				$openid->required = array("namePerson", "contact/email");
@@ -491,7 +491,7 @@ class Login_Controller extends Template_Controller {
 					{
 						// Does User Exist?
 						/**
-						 *	@var Openid_Model
+						  @var Openid_Model
 						 */
 						$openid_user = ORM::factory("openid")
 							->where("openid", $openid->identity)
@@ -564,7 +564,7 @@ error_log("OpenID attributes: " . var_export($new_openid));
 									$auth->login($username, $password, TRUE);
 
 									// Redirect to Dashboard
-									url::redirect($user->dashboard());
+									url::redirect($openid_user->user->dashboard());
 								}
 							}
 						}

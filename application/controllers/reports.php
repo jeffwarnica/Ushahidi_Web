@@ -634,10 +634,7 @@ class Reports_Controller extends Main_Controller {
 			$this->template->content->incident_date = date('M j Y', strtotime($incident->incident_date));
 			$this->template->content->incident_time = date('H:i', strtotime($incident->incident_date));
 			$this->template->content->incident_category = $incident->incident_category;
-error_log(var_export($incident->user, true));
-error_log("XX" . var_export($incident->user->username, true));
 
-			$this->template->content->incident_submitter = $incident->user->username;
 			// Incident rating
 			$rating = ORM::factory('rating')
 					->join('incident','incident.id','rating.incident_id','INNER')

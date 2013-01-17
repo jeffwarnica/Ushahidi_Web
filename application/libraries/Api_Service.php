@@ -115,7 +115,7 @@ final class Api_Service {
 
 		// Unpack the URL parameters
 		$this->api_parameters = serialize(array_keys($this->request));
-
+error_log("API Logger, cause you're cool: " . var_export($this->request, true));
 		// Instantiate the database
 		$this->db = new Database();
 	}

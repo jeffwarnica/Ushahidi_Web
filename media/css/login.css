@@ -6,7 +6,7 @@
 
 * { margin: 0; padding: 0; }
 body {
-	background-image:url(../img/bkg_login.gif);
+	/* background-image:url(../img/bkg_login.gif); */
 }
 body, td {
 	font: 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, Verdana, sans-serif;
@@ -98,8 +98,9 @@ dl {}
 	border:3px solid #999;
 	padding: 20px;
 	background-color: #ddd;
-	float:left;
+	/*float:left;
 	width:340px;
+	*/
 	text-align:center;
 	margin-top:20px;
 }
@@ -108,8 +109,9 @@ dl {}
 	text-align:left;
 	padding: 20px;
 	background-color: #ddd;
-	float:right;
+	/*float:right;
 	width:300px;
+	*/
 }
 .login_text{
 	padding:3px 7px 3px 7px;
@@ -271,7 +273,7 @@ html[xmlns] .clearfix {
 }
 
 .signin_select{
-	display:none;
+	/*display:none;*/
 	margin-bottom:15px;
 	padding:10px;
 	background-color:#eee;

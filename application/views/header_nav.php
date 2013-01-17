@@ -47,7 +47,7 @@
 				
 				<ul>
 	
-					<li><a href="<?php echo url::site()."login/?newaccount";?>"><?php echo Kohana::lang('ui_main.login_signup_click'); ?></a></li>
+					<li><a href="<?php echo url::site()."login/?newaccount";?>"><?php echo Kohana::lang('ui_main.login_signup_click'); ?>, or Sign in with OpenID</a></li>
 	
 					<li><a href="#" id="header_nav_forgot" onclick="return false"><?php echo Kohana::lang('ui_main.forgot_password');?></a>
 						<?php echo form::open('login/', array('id' => 'header_nav_userforgot_form')); ?>

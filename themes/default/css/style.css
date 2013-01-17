@@ -75,7 +75,7 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     color: #333333;
     font-size: 12px;
-    background: #585858 url(../images/page-bg.jpg) 50% 0 repeat-x;
+    background: rgb(247, 222, 151) url(../images/page-bg.jpg) 50% 0 repeat-x;
 }
 
 
@@ -88,7 +88,7 @@ div.rapidxwpr{
 /* header */
 div#header{
     position: relative;
-    height: 144px;
+    height: 7em;
     margin: 0px 0px 0px 0px;
 }
 
@@ -310,7 +310,7 @@ div.search-form input.searchbtn{
 
 /* submit incident */
 div.submit-incident{
-    margin: 80px 0 0 0;
+    margin: 4em 0 0 0;
     position:absolute;
     top:0; right:0;
     width: 300px;
@@ -334,7 +334,7 @@ div.submit-incident a, div.submit-incident a:hover{
 /* mainmenu */
 div#mainmenu{
     background: #C2C2C2;
-    border: #FFF 2px solid;
+    /*border: #FFF 2px solid;*/
     padding: 7px 10px;
 }
 
@@ -2077,7 +2077,7 @@ p.labeled-divider span { position:relative; top:-8px; display:inline-block; back
 #rb_list-view .verified { border-left:6px solid #368C00; }
 #rb_list-view .unverified { border-left:6px solid #A60003; }
 
-#rb_map-view { display:none; width: 590px; height: 384px; border:1px solid #CCCCCC; margin: 3px auto; }
+#rb_map-view { display:none; width: 590px; height: 384px; border:1px solid rgb(0, 0, 0); margin: 3px auto; }
     
 .reports-box .hover { background:#fffded; }
     

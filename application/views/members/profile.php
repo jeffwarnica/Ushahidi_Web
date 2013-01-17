@@ -51,12 +51,12 @@
 					<div class="sms_holder">
 
 						<?php Event::run('ui_admin.profile_shown'); ?>
-
+<?php if (!$nopasswordedit) {?>
 						<div class="row">
 							<h4><a href="#" class="tooltip" title="<?php echo Kohana::lang("tooltips.profile_password"); ?>"><?php echo Kohana::lang('ui_main.current_password'); ?></a> <span class="required"><?php echo Kohana::lang('ui_main.required'); ?></span></h4>
 							<?php print form::password('current_password', '', ' class="text"'); ?>
 						</div>
-
+<?php } ?>
 						<div class="row">
 							<h4><a href="#" class="tooltip" title="<?php echo Kohana::lang("tooltips.profile_name"); ?>"><?php echo Kohana::lang('ui_main.full_name');?></a> <span class="required"><?php echo Kohana::lang('ui_main.required'); ?></span></h4>
 							<?php print form::input('name', $form['name'], ' class="text long2"'); ?>
@@ -66,16 +66,16 @@
 							<h4><a href="#" class="tooltip" title="<?php echo Kohana::lang("tooltips.profile_email"); ?>"><?php echo Kohana::lang('ui_main.email');?></a> <span class="required"><?php echo Kohana::lang('ui_main.required'); ?></span></h4>
 							<?php print form::input('email', $form['email'], ' class="text long2"'); ?>
 						</div>
-
+<?php if (!$nopasswordedit) {?>
 						<div class="row">
 							<h4><a href="#" class="tooltip" title="<?php echo Kohana::lang("tooltips.profile_new_password"); ?>"><?php echo Kohana::lang('ui_main.new_password');?></a></h4>
 							<?php print form::password('new_password', $form['new_password'], ' class="text"'); ?>
 						</div>
-
 						<div class="row">
 							<h4><?php echo Kohana::lang('ui_main.password_again');?></h4>
 							<?php print form::password('password_again', $form['password_again'], ' class="text"'); ?>
 						</div>
+<?php }?>
 
 						<div class="row">
 							<h4><a href="#" class="tooltip" title="<?php echo Kohana::lang("tooltips.profile_notify"); ?>"><?php echo Kohana::lang('ui_main.receive_notifications');?>?</a></h4>

@@ -98,6 +98,28 @@ echo html::script(url::file_loc('js').'media/js/global', TRUE);
 
 		<h2><?php echo Kohana::lang('ui_main.login_with'); ?>:</h2>
 
+		<?php if (kohana::config('config.allow_openid') == TRUE): ?>
+		<h2><a href="javascript:toggle('signin_openid');"><?php echo Kohana::lang('ui_main.login_openid'); ?></a></h2>
+		<div id="signin_openid" class="signin_select ui-corner-all">
+			<?php echo form::open(NULL, array('id'=>"openid_form")); ?>
+				<input type="hidden" name="action" value="openid">
+				<div id="openid_choice">
+					<p><?php echo Kohana::lang('ui_main.login_select_openid'); ?>:</p>
+					<div id="openid_btns"></div>
+				</div>
+
+				<div id="openid_input_area">
+					<input id="openid_identifier" name="openid_identifier" type="text" value="http://" />
+					<input id="openid_submit" type="submit" value="Sign-In"/>
+				</div>
+				<noscript>
+					<p>OpenID is service that allows you to log-on to many different websites using a single indentity.
+					Find out <a href="http://openid.net/what/">more about OpenID</a> and <a href="http://openid.net/get/">how to get an OpenID enabled account</a>.</p>
+				</noscript>
+			<?php echo form::close(); ?>
+		</div>
+		<?php endif; ?>
+		
 		<h2><a href="javascript:toggle('signin_userpass');"><?php echo Kohana::lang('ui_main.login_userpass'); ?></a></h2>
 		<div id="signin_userpass" class="signin_select ui-corner-all">
 			<?php echo form::open(NULL, array('id'=>"userpass_form")); ?>
@@ -126,7 +148,7 @@ echo html::script(url::file_loc('js').'media/js/global', TRUE);
 			<?php echo form::close(); ?>
 		</div>
 		
-		<div id="signin_forgot" class="signin_select ui-corner-all">
+		<div id="signin_forgot" class="signin_select ui-corner-all" style="display: none;">
 			<?php echo form::open(NULL, array('id'=>"userforgot_form")); ?>
 				<input type="hidden" name="action" value="forgot">
 				<table width="100%" border="0" cellspacing="3" cellpadding="4" background="" id="ushahidi_loginbox">
@@ -141,27 +163,6 @@ echo html::script(url::file_loc('js').'media/js/global', TRUE);
 			<?php echo form::close() ?>
 		</div>
 
-		<?php if (kohana::config('config.allow_openid') == TRUE): ?>
-		<h2><a href="javascript:toggle('signin_openid');"><?php echo Kohana::lang('ui_main.login_openid'); ?></a></h2>
-		<div id="signin_openid" class="signin_select ui-corner-all">
-			<?php echo form::open(NULL, array('id'=>"openid_form")); ?>
-				<input type="hidden" name="action" value="openid">
-				<div id="openid_choice">
-					<p><?php echo Kohana::lang('ui_main.login_select_openid'); ?>:</p>
-					<div id="openid_btns"></div>
-				</div>
-
-				<div id="openid_input_area">
-					<input id="openid_identifier" name="openid_identifier" type="text" value="http://" />
-					<input id="openid_submit" type="submit" value="Sign-In"/>
-				</div>
-				<noscript>
-					<p>OpenID is service that allows you to log-on to many different websites using a single indentity.
-					Find out <a href="http://openid.net/what/">more about OpenID</a> and <a href="http://openid.net/get/">how to get an OpenID enabled account</a>.</p>
-				</noscript>
-			<?php echo form::close(); ?>
-		</div>
-		<?php endif; ?>
 	</div>
 
 	<div id="create_account" class="ui-corner-all">

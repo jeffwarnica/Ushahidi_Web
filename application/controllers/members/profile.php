@@ -52,6 +52,8 @@ class Profile_Controller extends Members_Controller
 		$form_error = FALSE;
 		$form_saved = FALSE;
 
+		$nopasswordedit = (Kohana::config('config.allow_openid') == TRUE) && ($this->user->isOpenIdUser());
+
 		// check, has the form been submitted, if so, setup validation
 		if ($_POST)
 		{
@@ -63,16 +65,19 @@ class Profile_Controller extends Members_Controller
 			$post->add_rules('username','required','alpha_numeric');
 			$post->add_rules('name','required','length[3,100]');
 			$post->add_rules('email','required','email','length[4,64]');
-			$post->add_rules('current_password','required');
 
 			$post->add_callbacks('email',array($this,'email_exists_chk'));
 			$post->add_callbacks('username',array($this,'username_exists_chk'));
-			$post->add_callbacks('current_password',array($this,'current_pw_valid_chk'));
 
-			// If Password field is not blank
-			if ( ! empty($post->new_password))
-			{
-				$post->add_rules('new_password','required','length['.kohana::config('auth.password_length').']' ,'alpha_dash','matches[password_again]');	
+			if (! $nopasswordedit) {
+				$post->add_rules('current_password','required');
+				$post->add_callbacks('current_password',array($this,'current_pw_valid_chk'));
+				
+				// If Password field is not blank
+				if ( ! empty($post->new_password))
+				{
+					$post->add_rules('new_password','required','length['.kohana::config('auth.password_length').']' ,'alpha_dash','matches[password_again]');	
+				}
 			}
 			//for plugins that want to know what the user had to say about things
 			Event::run('ushahidi_action.profile_post_member', $post);
@@ -95,6 +100,7 @@ class Profile_Controller extends Members_Controller
 				}
 
 				$user = ORM::factory('user',$this->user_id);
+				
 				if ($user->loaded)
 				{
 					$user->username = $username;
@@ -104,10 +110,12 @@ class Profile_Controller extends Members_Controller
 					$user->public_profile = $post->public_profile;
 					$user->color = $post->color;
 					$user->needinfo = $needinfo;
-					if ($post->new_password != '')
-					{
-						$user->password = $post->new_password;
-					}					
+					if (!$nopasswordedit) {
+						if ($post->new_password != '')
+						{
+							$user->password = $post->new_password;
+						}			
+					}		
 					$user->save();
 					//for plugins that want to know how the user now stands
 					Event::run('ushahidi_action.profile_edit_member', $user);
@@ -149,6 +157,7 @@ class Profile_Controller extends Members_Controller
 		else
 		{
 			$user = ORM::factory('user',$this->user_id);
+
 			$form['username'] = $user->username;
 			$form['name'] = $user->name;
 			$form['email'] = $user->email;
@@ -176,6 +185,7 @@ class Profile_Controller extends Members_Controller
 		$this->template->content->errors = $errors;
 		$this->template->content->form_error = $form_error;
 		$this->template->content->form_saved = $form_saved;
+		$this->template->content->nopasswordedit = $nopasswordedit;
 		$this->template->content->yesno_array = array('1'=>utf8::strtoupper(Kohana::lang('ui_main.yes')),'0'=>utf8::strtoupper(Kohana::lang('ui_main.no')));
 
 		// Javascript Header

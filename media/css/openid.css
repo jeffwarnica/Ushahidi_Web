@@ -11,6 +11,7 @@
 
 #openid_form legend {
 	font-weight: bold;
+	display: inline-block
 }
 
 #openid_choice {

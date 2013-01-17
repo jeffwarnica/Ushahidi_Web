@@ -58,11 +58,16 @@ class S_Alerts_Controller extends Controller {
 		$site_name = $settings['site_name'];
 		$alerts_email = ($settings['alerts_email']) ? $settings['alerts_email']
 			: $settings['site_email'];
+		
+		$googleBits = (Kohana::config('config.google_analytics_in_email') == TRUE) ?
+			 "utm_campaign=alerts&amp;utm_medium=email&amp;utm_source=incidentreport" :
+			 "";
+		
 		$unsubscribe_message = Kohana::lang('alerts.unsubscribe')
-								.url::site().'alerts/unsubscribe/';
+								.url::site().'alerts/unsubscribe/' . $googleBits;
 
-				$database_settings = kohana::config('database'); //around line 33
-				$this->table_prefix = $database_settings['default']['table_prefix']; //around line 34
+		$database_settings = kohana::config('database'); //around line 33
+		$this->table_prefix = $database_settings['default']['table_prefix']; //around line 34
 
 		$settings = NULL;
 		$sms_from = NULL;
@@ -90,7 +95,8 @@ class S_Alerts_Controller extends Controller {
 			// ** Pre-Formatting Message ** //
 			// Convert HTML to Text
 			$incident_description = $incident->incident_description;
-			$incident_url = url::site().'reports/view/'.$incident->id;
+			$incident_url = url::site().'reports/view/'.$incident->id . $googleBits;
+			
 			$html2text = new Html2Text($incident_description);
 			$incident_description = $html2text->get_text();
 

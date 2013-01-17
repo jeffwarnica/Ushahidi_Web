@@ -24,6 +24,11 @@ class Stats_Model extends ORM {
 	 */
 	public static function get_javascript()
 	{
+		
+		//Skip all of this BS. No call backs to ushahidi at all
+		
+		return "";
+	
 		// Make sure cURL is installed
 		if ( ! function_exists('curl_exec'))
 		{

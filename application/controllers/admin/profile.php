@@ -46,6 +46,12 @@ class Profile_Controller extends Admin_Controller
         $form_error = FALSE;
         $form_saved = FALSE;
 
+        /**
+		 @var User_Model
+         */
+        $user = ORM::factory('user',$this->user_id);
+        $nopasswordedit = (Kohana::config('config.allow_openid') == TRUE) && $user->isOpenIdUser();
+        
         // check, has the form been submitted, if so, setup validation
         if ($_POST)
         {
@@ -57,27 +63,30 @@ class Profile_Controller extends Admin_Controller
 			$post->add_rules('email','required','email','length[4,64]');
 			$post->add_rules('current_password','required');
 			$post->add_callbacks('email',array($this,'email_exists_chk'));
-			$post->add_callbacks('current_password',array($this,'current_pw_valid_chk'));
 
-            // If Password field is not blank
-            if ( ! empty($post->new_password))
-            {
-                $post->add_rules('new_password','required','length[5,30]','alpha_dash','matches[password_again]');
-            }
+			if ( ! $nopasswordedit ) {
+				$post->add_callbacks('current_password',array($this,'current_pw_valid_chk'));
+	            // If Password field is not blank
+	            if ( ! empty($post->new_password))
+	            {
+	                $post->add_rules('new_password','required','length[5,30]','alpha_dash','matches[password_again]');
+	            }
+			}
 		//for plugins that'd like to know what the user has to say about their profile
 		Event::run('ushahidi_action.profile_add_admin', $post);
 			if ($post->validate())
 			{
-				$user = ORM::factory('user',$this->user_id);
 				if ($user->loaded)
 				{
 					$user->name = $post->name;
 					$user->email = $post->email;
 					$user->notify = $post->notify;
-					if ($post->new_password != '')
-                    {
-                        $user->password = $post->new_password;
-                    }
+					if ( ! $nopasswordedit ) {
+						if ($post->new_password != '')
+	                    {
+	                        $user->password = $post->new_password;
+	                    }
+					}
 					$user->save();
 					
 					
@@ -121,7 +130,6 @@ class Profile_Controller extends Admin_Controller
         }
         else
         {
-            $user = ORM::factory('user',$this->user_id);
             $form['username'] = $user->email;
             $form['name'] = $user->name;
             $form['email'] = $user->email;

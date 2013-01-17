@@ -8,7 +8,7 @@
  *
  * Valid drivers are: native, sendmail, smtp
  */
-$config['driver'] = 'native';
+$config['driver'] = 'sendmail';
 
 /**
  * To use secure connections with SMTP, set "port" to 465 instead of 25.
@@ -19,7 +19,14 @@ $config['driver'] = 'native';
  * @param   string  sendmail: executable path, with -bs or equivalent attached
  * @param   array   smtp: hostname, (username), (password), (port), (auth), (encryption)
  */
-$config['options'] = NULL;
-
+$config['options'] = null; /*array(
+			"hostname" 	=> "smtp.gmail.com",
+			"username" 	=> "fail@halifail.com",
+			"password" 	=> "crihasIsh_",
+			"port" 		=> "465",
+// 			"auth" 		=> "",
+			"encryption"=> "ssl",
+		);
+*/
 
 $config['max_imap_messages'] = 10;

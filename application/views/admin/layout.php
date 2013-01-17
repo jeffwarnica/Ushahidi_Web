@@ -310,11 +310,13 @@
 	</div>
 	<div id="footer">
 		<div class="holder">
+<?php if (0) {?>			
 			<strong>
 				<a href="http://www.ushahidi.com" target="_blank" title="Ushahidi Platform" alt="Ushahidi Platform">
                 	<sup><?php echo Kohana::config('settings.ushahidi_version');?></sup>
             	</a>
 			</strong>
+<?php }?>			
 		</div>
 	</div>
 <?php echo $footer_block; ?>

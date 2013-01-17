@@ -506,7 +506,7 @@ class Login_Controller extends Template_Controller {
 							$auth->force_login($openid_user->user->username);
 
 							// Exists Redirect to Dashboard
-							url::redirect($user->dashboard());
+							url::redirect($openid_user->user->dashboard());
 						}
 						else
 						{
@@ -522,6 +522,9 @@ class Login_Controller extends Template_Controller {
 							else
 							{
 								// Create new User and save OpenID
+								/**
+								 * @var User_Model
+								 */
 								$user = ORM::factory("user");
 
 								// But first... does this email address already exist
@@ -563,7 +566,7 @@ class Login_Controller extends Template_Controller {
 									$auth->login($username, $password, TRUE);
 
 									// Redirect to Dashboard
-									url::redirect($openid_user->user->dashboard());
+									url::redirect($user->dashboard());
 								}
 							}
 						}

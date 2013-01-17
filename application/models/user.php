@@ -346,6 +346,10 @@ class User_Model extends Auth_User_Model {
 		return FALSE;
 	}
 	
+	public function isOpenIdUser() {
+		return (count($this->openid) > 0);
+	}
+	
 	/**
 	 * Get user's dashboard
 	 */

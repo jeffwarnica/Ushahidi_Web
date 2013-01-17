@@ -167,9 +167,11 @@
 
 			<!-- info-nav -->
 			<div class="info-nav">
+<?php if (0) {?>			
 				<ul>
 					<li><a href="http://forums.ushahidi.com/"><?php echo Kohana::lang('ui_admin.forum');?></a></li>
 				</ul>
+<?php }?>				
 				<div class="info-search"><?php echo form::open('members/reports', array('id' => 'info-search', 'method' => 'get')); ?><input type="text" name="k" class="info-keyword" value=""> <a href="javascript:info_search();" class="btn"><?php echo Kohana::lang('ui_admin.search');?></a><?php echo form::close(); ?></div>
 				<div style="clear:both"></div>
 			</div>
@@ -194,11 +196,13 @@
 	</div>
 	<div id="footer">
 		<div class="holder">
+<?php if (0) {?>		
 			<strong>
 				<a href="http://www.ushahidi.com" target="_blank" title="Ushahidi Engine" alt="Ushahidi Engine">
                 	<sup><?php echo Kohana::config('settings.ushahidi_version');?></sup>
             	</a>
 			</strong>
+<?php }?>			
 		</div>
 	</div>
 </body>

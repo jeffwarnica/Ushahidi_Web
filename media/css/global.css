@@ -183,3 +183,7 @@ body {
 form#header_nav_userforgot_form {
 	display:none;
 }
+
+#adsense-code {
+	text-align: center;
+}

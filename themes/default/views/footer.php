@@ -12,7 +12,9 @@
 
 		<!-- footer content -->
 		<div class="rapidxwpr floatholder">
-
+<?php 
+if (0) {
+?>	
 			<!-- footer credits -->
 			<div class="footer-credits">
 				Powered by the &nbsp;
@@ -22,7 +24,9 @@
 				&nbsp; Platform
 			</div>
 			<!-- / footer credits -->
-
+<?php 
+}
+?>
 			<!-- footer menu -->
 			<div class="footermenu">
 				<ul class="clearingfix">

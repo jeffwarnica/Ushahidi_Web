@@ -6,7 +6,7 @@
 			<!-- green-box -->
 			<div class="green-box">
 				<h3><?php echo Kohana::lang('ui_main.reports_submitted');?></h3>
-
+<?php if (0) {?>
 				<div class="thanks_msg"><a href="<?php echo
 					url::site().'reports' ?>"><?php echo Kohana::lang('ui_main.reports_return');?></a><br /><br /><br />
 					<?php echo Kohana::lang('ui_main.feedback_reports');?><br /><br />
@@ -18,6 +18,7 @@
 					print form::close();
 					?>
 				</div>
+<?php }?>				
 			</div>
 		</div>
 		<!-- end block -->

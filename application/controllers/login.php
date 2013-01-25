@@ -77,6 +77,13 @@ class Login_Controller extends Template_Controller {
 		$action = (isset($_POST["action"])) ? $_POST["action"] : "";
 
 		// Override success variable if change_pw_success GET var is set
+		if (isset($_GET["openid_err"]))
+		{
+			$message_class = 'login_error';
+			$message = $_SESSION['openid_error'];
+		}
+		
+		// Override success variable if change_pw_success GET var is set
 		if (isset($_GET["change_pw_success"]))
 		{
 			$change_pw_success = TRUE;
@@ -692,8 +699,8 @@ class Login_Controller extends Template_Controller {
 
 		$settings = ORM::factory("settings")->find(1);
 
-		$appid = $settings->facebook_appid;
-		$appsecret = $settings->facebook_appsecret;
+		$appid = Settings_Model::get_setting('facebook_appid');
+		$appsecret = Settings_Model::get_setting('facebook_appsecret');
 		$next_url = url::site()."members/login/facebook";
 		$cancel_url = url::site()."members/login";
 
@@ -707,12 +714,11 @@ class Login_Controller extends Template_Controller {
 		// Get User ID
 		$fb_user = $facebook->getUser();
 		if ($fb_user)
-		{
+		{			
 			try
 			{
 		    	// Proceed knowing you have a logged in user who's authenticated.
 				$new_openid = $facebook->api('/me');
-
 				// Does User Exist?
 				$openid_user = ORM::factory("openid")
 					->where("openid", "facebook_".$new_openid["id"])
@@ -735,9 +741,9 @@ class Login_Controller extends Template_Controller {
 					if ( ! isset($new_openid["email"]) OR empty($new_openid["email"]))
 					{
 						$openid_error = "User has not been logged in. No Email Address Found.";
-
+						$_SESSION['openid_error'] = $openid_error;
 						// Redirect back to login
-						url::redirect("login");
+						url::redirect("login?openid_err");
 					}
 					else
 					{
@@ -749,9 +755,9 @@ class Login_Controller extends Template_Controller {
 						if ($user->email_exists($new_openid["email"]))
 						{
 							$openid_error = $new_openid["email"] . " is already registered in our system.";
-
+							$_SESSION['openid_error'] = $openid_error;
 							// Redirect back to login
-							url::redirect("login");
+							url::redirect("login?openid_err");
 						}
 						else
 						{

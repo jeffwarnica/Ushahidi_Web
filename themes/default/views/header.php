@@ -38,8 +38,11 @@
 ?>
 
 <body id="page" class="<?php echo $body_class; ?>">
-
-	<?php echo $header_nav; ?>
+	
+	<?php 
+	Event::run('ushahidi_action.member_top_of_body');
+	echo $header_nav; 
+	?>
 
 	<!-- wrapper -->
 	<div class="rapidxwpr floatholder">

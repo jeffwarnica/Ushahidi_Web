@@ -158,8 +158,9 @@
 	</script>
 </head>
 <body>
-
-	<?php echo $header_nav; ?>
+	<?php 
+	Event::run('ushahidi_action.member_top_of_body');
+	echo $header_nav; ?>
 
 	<div class="holder">
 		<!-- header -->

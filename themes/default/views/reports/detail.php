@@ -1,4 +1,4 @@
-<div id="main" class="report_detail">
+<div id="main" class="report_detail" itemscope itemtype="http://schema.org/Event">
 
 	<div class="left-col">
 
@@ -29,7 +29,7 @@
 		</p>
 		<p class="report-when-where">
 			<span class="r_date"><?php echo $incident_time.' '.$incident_date; ?> </span>
-			<span class="r_location"><?php echo html::specialchars($incident_location); ?></span>
+			<span class="r_location" itemprop="location"><?php echo html::specialchars($incident_location); ?></span>
 			<?php Event::run('ushahidi_action.report_meta_after_time', $incident_id); ?>
 		</p>
 

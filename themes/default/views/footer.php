@@ -5,8 +5,14 @@
 	</div>
 	<!-- / wrapper -->
 
+	
 	<!-- footer -->
 	<div id="footer" class="clearingfix">
+
+	<?php
+// Action::nav_main_bottom - Add items to the bottom links
+Event::run('ushahidi_action.nav_top_of_footer');
+?>
 
 		<div id="underfooter"></div>
 

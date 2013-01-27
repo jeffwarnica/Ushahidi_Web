@@ -269,7 +269,12 @@
 	</div>
 </div>
 <!-- / main body -->
-
+<div class="content-container social-content">
+	<?php
+		// Action::main_filters - Add items to the main_filters
+		Event::run('ushahidi_action.main_page_social_content');
+	?>
+</div>
 <!-- content -->
 <div class="content-container">
 

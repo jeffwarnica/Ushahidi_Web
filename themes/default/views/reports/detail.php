@@ -13,7 +13,7 @@
     		}
   	  ?>
 
-		<h1 class="report-title"><?php
+		<h1 class="report-title" itemprop="name"><?php
 			echo htmlentities($incident_title, ENT_QUOTES, "UTF-8");
 
 			// If Admin is Logged In - Allow For Edit Link
@@ -28,7 +28,7 @@
 			Submitted by: <?php echo $incident_submitter ?>
 		</p>
 		<p class="report-when-where">
-			<span class="r_date"><?php echo $incident_time.' '.$incident_date; ?> </span>
+			<span class="r_date" itemprop="startDate" datetime="<?php echo $incident_date_8601; ?>"><?php echo $incident_time.' '.$incident_date; ?> </span>
 			<span class="r_location" itemprop="location"><?php echo html::specialchars($incident_location); ?></span>
 			<?php Event::run('ushahidi_action.report_meta_after_time', $incident_id); ?>
 		</p>

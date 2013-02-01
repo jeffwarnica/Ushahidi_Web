@@ -19,14 +19,6 @@ $config['driver'] = 'sendmail';
  * @param   string  sendmail: executable path, with -bs or equivalent attached
  * @param   array   smtp: hostname, (username), (password), (port), (auth), (encryption)
  */
-$config['options'] = null; /*array(
-			"hostname" 	=> "smtp.gmail.com",
-			"username" 	=> "fail@halifail.com",
-			"password" 	=> "crihasIsh_",
-			"port" 		=> "465",
-// 			"auth" 		=> "",
-			"encryption"=> "ssl",
-		);
-*/
+$config['options'] = null;
 
 $config['max_imap_messages'] = 10;
